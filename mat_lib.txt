@@ -1,0 +1,111 @@
+1) $ git init
+
+2) $ git config --global user.name 'Gorokhov Nikita'
+$ git config --global user.email 'nikita.goroh@inbox.ru'
+1. $ cat c:/users/INWIN071/.gitconfig
+[user]
+        name = Gorokhov Nikita
+        email = nikita.goroh@inbox.ru
+[filter "lfs"]
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+        required = true
+[gui]
+        recentrepo = C:/Users/INWIN071/Desktop/Popov
+2. $ cat .git/config
+[core]
+        repositoryformatversion = 0
+        filemode = false
+        bare = false
+        logallrefupdates = true
+        symlinks = false
+        ignorecase = true
+
+3) 1. $ cat .git/HEAD
+ref: refs/heads/master
+2. $ cat .git/refs/heads/master
+cat: .git/refs/heads/master: No such file or directory # Нет файла т.к. не было коммита
+
+4) $ git add .
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   docs/math_lib_docs.txt
+        new file:   pyfiles/factorial.py
+        new file:   pyfiles/test.py
+        new file:   pyfiles/trigonometry.py
+
+5)$ git commit -m 'main'
+[master (root-commit) 8b932b1] main # 8b932b1 хэш коммита
+ 4 files changed, 23 insertions(+)
+ create mode 100644 docs/math_lib_docs.txt
+ create mode 100644 pyfiles/factorial.py
+ create mode 100644 pyfiles/test.py
+ create mode 100644 pyfiles/trigonometry.py
+1. $ git cat-file -p 8b932b1
+tree d7cf1d4cc0c0eece0ee6f220f53401352b64826c
+author Gorokhov Nikita <nikita.goroh@inbox.ru> 1664787514 +0900
+committer Gorokhov Nikita <nikita.goroh@inbox.ru> 1664787514 +0900
+
+main
+2. $ git cat-file -p d7cf1d
+040000 tree 2d4687e9d3b5149040dd9517c43357ed7496e18c    docs
+040000 tree 00f3295ff575265b4684a14ec6c1f275e4f0daf7    pyfiles
+3. $ cat .git/HEAD
+ref: refs/heads/master
+4. $ cat .git/refs/heads/master
+8b932b15e4c44183e9d9dfa901065e0356f0bca7
+5. Указывает на последний коммит 'main'
+$ git cat-file -p 8b932b1
+tree d7cf1d4cc0c0eece0ee6f220f53401352b64826c
+author Gorokhov Nikita <nikita.goroh@inbox.ru> 1664787514 +0900
+committer Gorokhov Nikita <nikita.goroh@inbox.ru> 1664787514 +0900
+
+main
+
+6)$ cd pyfiles
+$ py test.py
+pi: 3.141592653589793
+For angle: 0, Sine  is ~ 1.0
+For angle: pi/1, Sine  is ~ -1.00183
+For angle: pi/2, Sine  is ~ -0.0
+For angle: pi/3, Sine  is ~ 0.5
+For angle: pi/4, Sine  is ~ 0.70711
+For angle: pi/6, Sine  is ~ 0.86603
+
+1. $ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        pyfiles/__pycache__/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+7) $ git add .
+$ git commit -m 'test'
+[master 8b784f1] test
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 pyfiles/__pycache__/factorial.cpython-38.pyc
+ create mode 100644 pyfiles/__pycache__/trigonometry.cpython-38.pyc
+1. $ git cat-file -p 8b784f1
+tree 496ad251665860a05d94da9f0fee0f04d57ac1bd
+parent 8b932b15e4c44183e9d9dfa901065e0356f0bca7 # родительский коммит
+author Gorokhov Nikita <nikita.goroh@inbox.ru> 1664788215 +0900
+committer Gorokhov Nikita <nikita.goroh@inbox.ru> 1664788215 +0900
+
+test
+2. $ cat .git/HEAD
+ref: refs/heads/master
+3. $ cat .git/refs/heads/master
+8b784f130c52b063fb2e37b1f954c69649833fd7
+4. Указывает на последний коммит 'test'
+$ git cat-file -p 8b784f1
+tree 496ad251665860a05d94da9f0fee0f04d57ac1bd
+parent 8b932b15e4c44183e9d9dfa901065e0356f0bca7 # родительский коммит
+author Gorokhov Nikita <nikita.goroh@inbox.ru> 1664788215 +0900
+committer Gorokhov Nikita <nikita.goroh@inbox.ru> 1664788215 +0900

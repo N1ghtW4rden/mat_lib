@@ -109,3 +109,5 @@ tree 496ad251665860a05d94da9f0fee0f04d57ac1bd
 parent 8b932b15e4c44183e9d9dfa901065e0356f0bca7 # родительский коммит
 author Gorokhov Nikita <nikita.goroh@inbox.ru> 1664788215 +0900
 committer Gorokhov Nikita <nikita.goroh@inbox.ru> 1664788215 +0900
+
+*Самого коммита нет потому что не могу залогиниться в гит через консоль
